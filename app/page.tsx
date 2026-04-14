@@ -6,21 +6,69 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
 function LogoMark() {
   return (
-    <div
-      className="w-[34px] h-[34px] rounded-[10px] shrink-0 flex items-center justify-center"
-      style={{
-        background: "linear-gradient(135deg, #0f8f67, #17c88e)",
-        boxShadow: "0 6px 18px rgb(15 143 103 / 0.35)",
-      }}
-    >
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"
-          stroke="#fff"
-          strokeWidth="1.8"
-          strokeLinejoin="round"
-        />
-      </svg>
+    <div className="landing-brand-lockup">
+      <div className="landing-brand-mark">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 380 100"
+          width="100%"
+          height="100%"
+          preserveAspectRatio="xMinYMid meet"
+        >
+          <defs>
+            <linearGradient
+              id="landing-g-front"
+              x1="0%"
+              y1="100%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" stopColor="#0f8f67" />
+              <stop offset="100%" stopColor="#52d4a5" />
+            </linearGradient>
+            <linearGradient
+              id="landing-g-back-dark"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor="#0f8f67" />
+              <stop offset="100%" stopColor="#0a6f4f" />
+            </linearGradient>
+            <filter
+              id="landing-shadow"
+              x="-30%"
+              y="-30%"
+              width="160%"
+              height="160%"
+            >
+              <feDropShadow
+                dx="0"
+                dy="6"
+                stdDeviation="6"
+                floodColor="#081510"
+                floodOpacity="0.6"
+              />
+            </filter>
+            <style>{`.text { font-family: var(--font-sans); font-weight: 800; font-size: 76px; letter-spacing: -0.04em; fill: #ffffff; }`}</style>
+          </defs>
+          <g>
+            <path
+              d="M 10 10 L 40 10 L 90 60 L 90 90 L 60 90 L 10 40 Z"
+              fill="url(#landing-g-back-dark)"
+            />
+            <path
+              d="M 10 90 L 40 90 L 90 40 L 90 10 L 60 10 L 10 60 Z"
+              fill="url(#landing-g-front)"
+              filter="url(#landing-shadow)"
+            />
+          </g>
+          <text x="105" y="74" className="text">
+            xolto
+          </text>
+        </svg>
+      </div>
     </div>
   );
 }
@@ -86,70 +134,7 @@ export default function LandingPage() {
           href="/"
           className="flex items-center gap-2.5 font-bold text-[1.05rem] tracking-[-0.02em]"
         >
-          <div className="landing-brand-lockup">
-            <div className="landing-brand-mark">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 380 100"
-                width="100%"
-                height="100%"
-                preserveAspectRatio="xMinYMid meet"
-              >
-                <defs>
-                  <linearGradient
-                    id="landing-g-front"
-                    x1="0%"
-                    y1="100%"
-                    x2="100%"
-                    y2="0%"
-                  >
-                    <stop offset="0%" stopColor="#0f8f67" />
-                    <stop offset="100%" stopColor="#52d4a5" />
-                  </linearGradient>
-                  <linearGradient
-                    id="landing-g-back-dark"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#0f8f67" />
-                    <stop offset="100%" stopColor="#0a6f4f" />
-                  </linearGradient>
-                  <filter
-                    id="landing-shadow"
-                    x="-30%"
-                    y="-30%"
-                    width="160%"
-                    height="160%"
-                  >
-                    <feDropShadow
-                      dx="0"
-                      dy="6"
-                      stdDeviation="6"
-                      floodColor="#081510"
-                      floodOpacity="0.6"
-                    />
-                  </filter>
-                  <style>{`.text { font-family: var(--font-sans); font-weight: 800; font-size: 76px; letter-spacing: -0.04em; fill: #ffffff; }`}</style>
-                </defs>
-                <g>
-                  <path
-                    d="M 10 10 L 40 10 L 90 60 L 90 90 L 60 90 L 10 40 Z"
-                    fill="url(#landing-g-back-dark)"
-                  />
-                  <path
-                    d="M 10 90 L 40 90 L 90 40 L 90 10 L 60 10 L 10 60 Z"
-                    fill="url(#landing-g-front)"
-                    filter="url(#landing-shadow)"
-                  />
-                </g>
-                <text x="105" y="74" className="text">
-                  xolto
-                </text>
-              </svg>
-            </div>
-          </div>
+          <LogoMark />
         </a>
         <div className="flex items-center gap-2.5">
           <a href={`${APP_URL}/login`} className="btn btn-ghost btn-sm">
@@ -457,9 +442,7 @@ export default function LandingPage() {
                   className={`reveal border-l-2 border-brand/20 pl-6 lg:border-l-0 lg:pl-0
                               ${i === 1 ? "reveal-2 lg:px-7" : i === 2 ? "reveal-3 lg:pl-7" : "lg:pr-7"}`}
                 >
-                  <div className="landing-step-number mb-4">
-                    {step.num}
-                  </div>
+                  <div className="landing-step-number mb-4">{step.num}</div>
                   <h4 className="font-bold text-[1.05rem] text-ink mb-2.5">
                     {step.title}
                   </h4>
@@ -647,7 +630,6 @@ export default function LandingPage() {
               className="flex items-center gap-2.5 font-bold text-[1.05rem] tracking-[-0.02em]"
             >
               <LogoMark />
-              <span>xolto</span>
             </a>
             <p className="text-[0.875rem] text-ink/38 mt-2 max-w-[32ch] leading-[1.55]">
               AI-powered deal intelligence for serious marketplace buyers.
