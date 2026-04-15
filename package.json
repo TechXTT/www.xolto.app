@@ -5,17 +5,27 @@
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
-    "start": "next start -p 3001"
+    "start": "next start -p 3001",
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "google": "link:next/font/google",
     "next": "14.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "25.5.2",
     "@types/react": "19.2.14",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.0",
+    "prettier": "^3.3.3",
     "tailwindcss": "^4.2.2",
     "typescript": "5.4.5"
   }

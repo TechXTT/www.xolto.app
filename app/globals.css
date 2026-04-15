@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* Brand palette — available as bg-brand, text-bright, border-canvas, etc. */
@@ -58,11 +58,7 @@
 
   .btn-primary {
     @apply text-white;
-    background: linear-gradient(
-      135deg,
-      theme(colors.brand),
-      theme(colors.bright)
-    );
+    background: linear-gradient(135deg, theme(colors.brand), theme(colors.bright));
     box-shadow: 0 10px 28px rgb(15 143 103 / 0.3);
   }
   .btn-primary:hover {
