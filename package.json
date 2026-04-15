@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "@sentry/nextjs": "^10.48.0",
     "google": "link:next/font/google",
     "next": "14.2.0",

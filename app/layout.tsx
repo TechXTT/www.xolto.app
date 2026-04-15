@@ -1,5 +1,7 @@
-import type { Metadata } from 'next';
-import './globals.css';
+
+import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
 import { Outfit, Sora } from 'next/font/google';
 import { dashboardURL, siteURL } from './site';
 
@@ -63,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
