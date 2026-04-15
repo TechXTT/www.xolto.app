@@ -18,21 +18,12 @@ export const metadata: Metadata = {
     type: 'website',
     url: siteURL,
     siteName: 'xolto',
-    images: [
-      {
-        url: `${siteURL}/opengraph-image.png`,
-        width: 1200,
-        height: 630,
-        alt: 'xolto — Buy used electronics without overpaying',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'xolto — Used electronics copilot',
     description:
       'AI-powered marketplace intelligence for buying used electronics without overpaying.',
-    images: [`${siteURL}/opengraph-image.png`],
   },
   icons: {
     icon: '/icon.svg',
