@@ -13,6 +13,7 @@ const plans = [
     features: ['3 active searches', '30 minute polling'],
     missing: ['AI search generation', 'Full assistant access', 'Auto-messaging'],
     cta: 'Get started free',
+    ctaHref: (appURL: string) => `${appURL}/register`,
   },
   {
     name: 'Pro',
@@ -26,6 +27,7 @@ const plans = [
     ],
     missing: ['Auto-messaging'],
     cta: 'Upgrade to Pro',
+    ctaHref: (appURL: string) => `${appURL}/register?plan=pro`,
   },
   {
     name: 'Power',
@@ -41,6 +43,7 @@ const plans = [
     ],
     missing: [],
     cta: 'Get Power',
+    ctaHref: (appURL: string) => `${appURL}/register?plan=power`,
   },
 ];
 
@@ -133,7 +136,7 @@ export default function Pricing({ appURL }: PricingProps) {
               </ul>
 
               <a
-                href={`${appURL}/register`}
+                href={plan.ctaHref(appURL)}
                 className={`btn btn-full ${plan.featured ? 'btn-primary' : 'btn-ghost'}`}
               >
                 {plan.cta}

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'xolto — Used electronics copilot',
     description:
-      'Mission-based used electronics buying: live matches, fair-value scoring, risk flags, saved comparisons, and seller drafting.',
+      'Buy used electronics without overpaying. xolto scans second-hand electronics listings, estimates fair value, flags risks, and helps you decide which sellers to contact first.',
     type: 'website',
     url: siteURL,
     siteName: 'xolto',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'xolto — Used electronics copilot',
     description:
-      'AI-powered marketplace intelligence for buying used electronics without overpaying.',
+      'Buy used electronics without overpaying. xolto scans second-hand electronics listings, estimates fair value, flags risks, and helps you decide which sellers to contact first.',
   },
   icons: {
     icon: '/icon.svg',

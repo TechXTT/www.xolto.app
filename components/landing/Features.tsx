@@ -87,7 +87,7 @@ export default function Features() {
                 {card.icon}
               </div>
               <h3 className="font-bold text-[1.1rem] text-ink mb-2.5 leading-snug">{card.title}</h3>
-              <p className="text-ink/60 text-[0.9375rem] leading-[1.65]">{card.body}</p>
+              <p className="text-ink/60 text-[0.875rem] sm:text-[0.9375rem] leading-[1.65]">{card.body}</p>
             </div>
           ))}
         </div>

@@ -25,8 +25,8 @@ const heroRows = [
 
 export default function Hero({ appURL }: HeroProps) {
   return (
-    <section className="landing-hero-backdrop min-h-screen flex items-center pt-[68px]">
-      <div className="landing-shell-grid grid gap-[60px] items-center w-full max-w-[1200px] mx-auto grid-cols-1 lg:grid-cols-2">
+    <section className="landing-hero-backdrop min-h-screen flex items-center pt-14 md:pt-[68px]">
+      <div className="landing-shell-grid grid gap-6 lg:gap-[60px] items-center w-full max-w-[1200px] mx-auto grid-cols-1 lg:grid-cols-2">
         <div>
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand/28 bg-brand/10 text-[0.8125rem] font-semibold text-bright mb-7">
             <span className="w-1.5 h-1.5 rounded-full bg-bright animate-glow" />
@@ -65,7 +65,7 @@ export default function Hero({ appURL }: HeroProps) {
           </div>
         </div>
 
-        <div className="landing-deal-card bg-surface rounded-[24px] p-6 border border-brand/28">
+        <div className="landing-deal-card bg-surface rounded-[24px] p-5 sm:p-6 border border-brand/28">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2 text-[0.8125rem] font-semibold text-ink/60">
               <span className="w-2 h-2 rounded-full bg-bright animate-glow" />
