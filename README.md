@@ -4,14 +4,20 @@
 
 ## Wedge + tone
 
-xolto is a used-electronics buying copilot. The wedge is the high-intent buyer
-for used cameras and laptops in the NL / Marktplaats market. BG / OLX is
-secondary and should not drive primary product decisions.
+xolto is a used-electronics buying copilot. The wedge is the high-intent BG
+used-tech buyer on OLX.bg, with pricing correctness in BGN as a P1 trust
+constraint. The wedge replaced NL / Marktplaats on 2026-04-17; legacy NL
+references remain but must not drive primary product decisions. The BG
+category scope (cameras, laptops, phones, other) is an open question
+resolved by the OLX BG trust audit — do not re-encode the retired
+Marktplaats-era cameras + laptops bias in new copy.
 
-Copy on this site is **NL-first with EN as fallback**. There is no i18n
-infrastructure today — future localization would need explicit work (message
-catalog, router strategy, etc.). Do not add English-only marketing language
-that breaks the NL-first tone.
+Copy on this site is currently still **NL-first with EN as fallback** — a
+legacy artifact of the prior wedge. Re-localization to BG-first is tracked
+as a separate initiative; until it ships, do not add new NL-only marketing
+language. Prefer EN when no BG copy is available. There is no i18n
+infrastructure today (message catalog, router strategy) — add one as part
+of the BG-first re-localization, not piecemeal.
 
 ## Requirements
 
