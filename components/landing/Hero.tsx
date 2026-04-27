@@ -5,21 +5,21 @@ type HeroProps = {
 const heroRows = [
   {
     dot: 'bg-[#d97706]',
-    name: 'Sony A6700 + 18-135mm Kit',
-    meta: 'Good · Vinted · 4 min ago',
-    price: '€1 040',
+    name: 'Sony α6000 + 16-50mm kit',
+    meta: 'Good · OLX.bg · 4 min ago',
+    price: '€380 (743.20 лв.)',
   },
   {
     dot: 'bg-bright',
-    name: 'Sony Alpha A6700 — boxed',
-    meta: 'Like new · Marktplaats · 11 min ago',
-    price: '€870',
+    name: 'Sony α6400 body',
+    meta: 'Like new · OLX.bg · 11 min ago',
+    price: '€520 (1016.99 лв.)',
   },
   {
     dot: 'bg-white/20',
-    name: 'Sony a6700 body (used)',
-    meta: 'Fair · Marktplaats · 22 min ago',
-    price: '€690',
+    name: 'Canon EOS M50 — kit lens',
+    meta: 'Fair · OLX.bg · 22 min ago',
+    price: '€240 (469.40 лв.)',
   },
 ];
 
@@ -30,19 +30,19 @@ export default function Hero({ appURL }: HeroProps) {
         <div>
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand/28 bg-brand/10 text-[0.8125rem] font-semibold text-bright mb-7">
             <span className="w-1.5 h-1.5 rounded-full bg-bright animate-glow" />
-            AI-powered marketplace intelligence
+            Your OLX.bg buying copilot
           </div>
 
           <h1 className="landing-hero-title text-ink">
-            <span className="landing-hero-title-line">Buy used</span>
-            <span className="landing-hero-title-line">electronics</span>
+            <span className="landing-hero-title-line">Buy used cameras</span>
+            <span className="landing-hero-title-line">on OLX.bg</span>
             <span className="landing-hero-title-accent">without</span>
             <span className="landing-hero-title-line">overpaying.</span>
           </h1>
 
-          <p className="text-ink/58 text-[1.03rem] leading-[1.75] max-w-[34ch] mb-9 font-medium">
-            xolto scans second-hand listings, estimates fair value, flags risks, and tells you
-            exactly which sellers to contact first.
+          <p className="text-ink/58 text-[1.03rem] leading-[1.75] max-w-[38ch] mb-9 font-medium">
+            Get a Buy / Negotiate / Ask seller / Skip recommendation on every listing, with the
+            comparables to back it up.
           </p>
 
           <div className="flex flex-wrap gap-3 mb-10">
@@ -55,13 +55,7 @@ export default function Hero({ appURL }: HeroProps) {
           </div>
 
           <div className="flex items-center gap-2.5 text-[0.8125rem] text-ink/38">
-            <span>Phones</span>
-            <span className="w-1 h-1 rounded-full bg-ink/38" />
-            <span>Laptops</span>
-            <span className="w-1 h-1 rounded-full bg-ink/38" />
             <span>Cameras</span>
-            <span className="w-1 h-1 rounded-full bg-ink/38" />
-            <span>and more</span>
           </div>
         </div>
 
@@ -82,12 +76,12 @@ export default function Hero({ appURL }: HeroProps) {
                 <div className="font-bold text-[0.9375rem] text-ink leading-snug">
                   Sony A6700 Body Only
                 </div>
-                <div className="text-[0.75rem] text-ink/38 mt-1">Like new · Marktplaats</div>
+                <div className="text-[0.75rem] text-ink/38 mt-1">Like new · OLX.bg</div>
               </div>
               <div className="text-right shrink-0">
-                <div className="text-[1.25rem] font-extrabold text-ink">€840</div>
+                <div className="text-[1.25rem] font-extrabold text-ink">€840 (1642.87 лв.)</div>
                 <div className="text-[0.75rem] font-bold text-bright bg-bright/12 px-2.5 py-0.5 rounded-full mt-1 inline-block">
-                  Offer €756
+                  Offer €756 (1478.58 лв.)
                 </div>
               </div>
             </div>

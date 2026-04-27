@@ -10,7 +10,7 @@ const steps = [
   {
     num: '02',
     title: 'Let it hunt',
-    body: 'Active hunts run on a schedule you set — from every 30 minutes down to every minute. Marktplaats, Vinted, OLX Bulgaria, and more are checked automatically.',
+    body: 'Active hunts run on a schedule you set — from every 30 minutes down to every minute. We check OLX.bg listings continuously and surface only the ones worth your time.',
   },
   {
     num: '03',
