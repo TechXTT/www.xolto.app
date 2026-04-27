@@ -22,7 +22,7 @@ const featureCards = [
       </svg>
     ),
     title: 'Live deal radar',
-    body: 'Set a mission once. xolto polls every marketplace on your behalf and streams new matches to your dashboard — no refreshing, no missed listings.',
+    body: 'Set a mission once. xolto polls OLX.bg on your behalf and streams new matches to your dashboard — no refreshing, no missed listings.',
   },
   {
     icon: (

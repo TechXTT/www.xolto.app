@@ -5,47 +5,64 @@ type PricingProps = {
   appURL: string;
 };
 
-const plans = [
+// Tier definitions mirror markt internal/billing/limits.go (LimitsFor +
+// TierDisplayName) and the xolto-app /settings tier display. Keep all three in
+// sync when changing tiers. Internal slugs (free/pro/power) are stable; only
+// the user-facing display labels and feature copy change here.
+//
+// Differentiator: number of missions + reply-copilot depth (NOT polling speed).
+// Auto-messaging is not a tier feature — reply copilot is drafts-only across
+// every paid tier (Phase 3A deep_link_only is shipped).
+//
+// Each plan carries an internal `slug` field (free/pro/power) so drift tests
+// can pair display names against canonical slugs without parsing CTA URLs.
+// CANONICAL SOURCE: markt/internal/billing/limits.go::TierDisplayName mirrored
+// at markt/internal/billing/testdata/tier_display_labels.json (W19-11).
+export const plans = [
   {
+    slug: 'free',
     name: 'Free',
-    price: '€0',
+    price: '€0 (0.00 лв.)',
     featured: false,
-    features: ['3 active searches', '30 minute polling'],
-    missing: ['AI search generation', 'Full assistant access', 'Auto-messaging'],
+    features: ['1 mission', 'Basic reply drafts'],
+    missing: ['AI search generation', 'Full assistant access'],
     cta: 'Get started free',
     ctaHref: (appURL: string) => `${appURL}/register`,
   },
   {
-    name: 'Pro',
-    price: '€9',
+    slug: 'pro',
+    name: 'Buyer',
+    price: '€9 (17.60 лв.)',
     featured: true,
     features: [
-      '10 active searches',
-      '5 minute polling',
+      '10 missions',
       'AI search generation',
       'Full assistant access',
+      'Fuller reply copilot',
     ],
-    missing: ['Auto-messaging'],
-    cta: 'Upgrade to Pro',
+    missing: [],
+    cta: 'Upgrade to Buyer',
+    // Internal slug stays "pro" for the mid tier.
     ctaHref: (appURL: string) => `${appURL}/register?plan=pro`,
   },
   {
-    name: 'Power',
-    price: '€29',
+    slug: 'power',
+    name: 'Pro',
+    price: '€29 (56.72 лв.)',
     featured: false,
     features: [
       'Unlimited missions',
-      '50 active searches',
-      '1 minute polling',
+      'Priority polling',
       'AI search generation',
       'Full assistant access',
-      'Auto-messaging',
+      'Full reply copilot',
     ],
     missing: [],
-    cta: 'Get Power',
+    cta: 'Upgrade to Pro',
+    // Internal slug stays "power" for the top tier.
     ctaHref: (appURL: string) => `${appURL}/register?plan=power`,
   },
-];
+] as const;
 
 export default function Pricing({ appURL }: PricingProps) {
   return (
