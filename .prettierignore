@@ -1,0 +1,15 @@
+# Auto-generated lockfiles — pnpm controls format; should not be Prettier-checked.
+pnpm-lock.yaml
+
+# Build artifacts
+.next
+out
+dist
+node_modules
+
+# Test artifacts (Playwright sweep screenshots, etc.)
+__tests__/ui-sweep/
+__tests__/.auth/
+test-results/
+playwright-report/
+.playwright-mcp/
