@@ -1,0 +1,57 @@
+import { test, expect } from '@playwright/test';
+
+const ALLOWED_CONSOLE_NOISE = [/Sentry/i, /Download the React DevTools/i];
+
+// URLs whose 404/error console messages are expected in non-Vercel environments.
+const ABORT_URL_PATTERNS = [
+  // Vercel Analytics is only served on Vercel infrastructure; aborts cleanly in local/CI.
+  '**/_vercel/insights/**',
+];
+
+test('landing page UI sweep', async ({ page }, testInfo) => {
+  // Fulfill known third-party requests with empty 200s outside Vercel to prevent spurious console errors.
+  for (const pattern of ABORT_URL_PATTERNS) {
+    await page.route(pattern, (route) => route.fulfill({ status: 200, body: '' }));
+  }
+
+  const errors: string[] = [];
+  page.on('console', (msg) => {
+    if (msg.type() !== 'error') return;
+    const text = msg.text();
+    if (ALLOWED_CONSOLE_NOISE.some((re) => re.test(text))) return;
+    errors.push(text);
+  });
+  page.on('pageerror', (err) => {
+    errors.push(`pageerror: ${err.message}`);
+  });
+
+  await page.goto('/', { waitUntil: 'networkidle' });
+
+  const viewport = page.viewportSize()!;
+  const dir = `${viewport.width}x${viewport.height}`;
+  await page.screenshot({
+    path: `__tests__/ui-sweep/${dir}/landing.png`,
+    fullPage: true,
+  });
+
+  // No horizontal overflow (1px tolerance for sub-pixel rounding)
+  const overflow = await page.evaluate(() => {
+    const html = document.documentElement;
+    return { scroll: html.scrollWidth, client: html.clientWidth };
+  });
+  expect(overflow.scroll, `horizontal overflow at ${dir}`).toBeLessThanOrEqual(overflow.client + 1);
+
+  // No error boundary rendered
+  await expect(page.locator('[data-testid="error-boundary"]')).toHaveCount(0);
+
+  // Wedge: hero contains "OLX"
+  const bodyText = await page.locator('body').innerText();
+  expect(bodyText, `hero/body should mention OLX at ${dir}`).toMatch(/olx/i);
+
+  // Wedge: pricing contains both "€" and "лв."
+  expect(bodyText, `pricing should contain € at ${dir}`).toContain('€');
+  expect(bodyText, `pricing should contain лв. at ${dir}`).toContain('лв.');
+
+  // No unhandled console errors
+  expect(errors, `console errors at ${dir}: ${errors.join('; ')}`).toEqual([]);
+});
