@@ -26,7 +26,7 @@ export default function Nav({ appURL }: NavProps) {
         </a>
       </div>
       <div className="flex items-center gap-2.5">
-        <a href={`${appURL}/login`} className="btn btn-ghost btn-sm">
+        <a href={`${appURL}/login`} className="btn btn-ghost btn-sm hidden sm:inline-flex">
           Log in
         </a>
         <a href={`${appURL}/register`} className="btn btn-primary btn-sm">
