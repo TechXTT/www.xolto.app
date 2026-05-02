@@ -109,7 +109,8 @@ export default function TryVerdict() {
     if (!trimmed) {
       setView({
         kind: 'error',
-        message: "That doesn't look like an OLX.bg listing URL. Paste a link from olx.bg/d/obyavi/...",
+        message:
+          "That doesn't look like an OLX.bg listing URL. Paste a link from olx.bg/d/obyavi/...",
       });
       return;
     }
@@ -117,7 +118,8 @@ export default function TryVerdict() {
     if (!isLikelyOlxBgUrl(trimmed)) {
       setView({
         kind: 'error',
-        message: "That doesn't look like an OLX.bg listing URL. Paste a link from olx.bg/d/obyavi/...",
+        message:
+          "That doesn't look like an OLX.bg listing URL. Paste a link from olx.bg/d/obyavi/...",
       });
       return;
     }
@@ -231,11 +233,7 @@ export default function TryVerdict() {
           </form>
 
           {errorMessage && (
-            <p
-              id="try-verdict-error"
-              role="alert"
-              className="mt-3 text-[0.875rem] text-[#f5b148]"
-            >
+            <p id="try-verdict-error" role="alert" className="mt-3 text-[0.875rem] text-[#f5b148]">
               {errorMessage}
             </p>
           )}
@@ -325,12 +323,7 @@ function VerdictResult({ data, sourceUrl }: { data: ScoredListing; sourceUrl: st
         <p className="text-[0.875rem] text-ink/60 leading-[1.6] mb-4">{data.reason}</p>
       )}
 
-      <a
-        href={sourceUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="btn btn-ghost"
-      >
+      <a href={sourceUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
         Open on OLX.bg
       </a>
     </div>

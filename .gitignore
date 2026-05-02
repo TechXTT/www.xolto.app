@@ -18,6 +18,11 @@ tsconfig.tsbuildinfo
 
 # Test / QA artifacts
 *.png
+!__tests__/ui-sweep/**/*.png
 screenshots/
 .playwright-mcp/
 .pnpm-store/
+
+playwright-report/
+test-results/
+blob-report/
