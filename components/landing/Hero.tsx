@@ -102,7 +102,13 @@ export default function Hero({ appURL }: HeroProps) {
               >
                 <span className={`w-2 h-2 rounded-full shrink-0 ${row.dot}`} />
                 <div className="flex-1 min-w-0">
-                  <div className="text-[0.8125rem] font-semibold text-ink truncate">{row.name}</div>
+                  {/* data-allow-overflow: truncate intentionally clips overflow with ellipsis */}
+                  <div
+                    className="text-[0.8125rem] font-semibold text-ink truncate"
+                    data-allow-overflow="true"
+                  >
+                    {row.name}
+                  </div>
                   <div className="text-[0.6875rem] text-ink/38">{row.meta}</div>
                 </div>
                 <div className="text-[0.875rem] font-bold text-ink shrink-0">{row.price}</div>
