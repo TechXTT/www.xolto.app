@@ -6,7 +6,10 @@ type NavProps = {
 
 export default function Nav({ appURL }: NavProps) {
   return (
-    <nav className="landing-nav fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-4 h-14 md:h-[68px] border-b border-brand/10">
+    <nav
+      className="landing-nav fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-4 h-14 md:h-[68px] border-b border-brand/10"
+      data-overflow-pending-fix="XOL-175"
+    >
       <a
         href="/"
         aria-current="page"

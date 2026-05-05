@@ -2,6 +2,63 @@ import { test, expect } from '@playwright/test';
 
 const ALLOWED_CONSOLE_NOISE = [/Sentry/i, /Download the React DevTools/i];
 
+// Class-5 overflow detector: walks constrained-overflow and fixed/absolute-positioned
+// elements to assert none overflow their parent horizontally.
+interface OverflowOffender {
+  tag: string;
+  cls: string;
+  id: string;
+  sw: number;
+  cw: number;
+  overflow: string;
+  position: string;
+  textPreview: string;
+}
+
+async function detectOverflowOffenders(
+  page: import('@playwright/test').Page,
+): Promise<OverflowOffender[]> {
+  return page.evaluate(() => {
+    const offenders: {
+      tag: string;
+      cls: string;
+      id: string;
+      sw: number;
+      cw: number;
+      overflow: string;
+      position: string;
+      textPreview: string;
+    }[] = [];
+    document.querySelectorAll('*').forEach((el) => {
+      const computed = getComputedStyle(el);
+      const isOverflowConstrained = computed.overflow !== 'visible' && computed.overflow !== '';
+      const isFixedOrAbsolute = computed.position === 'fixed' || computed.position === 'absolute';
+      if (!isOverflowConstrained && !isFixedOrAbsolute) return;
+      if ((el as HTMLElement).dataset?.allowOverflow === 'true') return;
+      // XOL-175 / Path B Safeguard 1: exempt elements with data-overflow-pending-fix
+      // (any non-empty value indicates a tracked bug ticket; remove marker on fix)
+      if ((el as HTMLElement).dataset?.overflowPendingFix) return;
+      // Tag-class universal exemption: form inputs have intentional clip-overflow
+      // for text-scrolling UX (browser-default behavior). See
+      // feedback_class5_assertion_design.md Contract C for design rationale.
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName)) return;
+      if (el.scrollWidth > el.clientWidth + 1) {
+        offenders.push({
+          tag: el.tagName,
+          cls: (el as HTMLElement).className || '',
+          id: el.id || '',
+          sw: el.scrollWidth,
+          cw: el.clientWidth,
+          overflow: computed.overflow,
+          position: computed.position,
+          textPreview: (el.textContent || '').slice(0, 60),
+        });
+      }
+    });
+    return offenders;
+  });
+}
+
 // URLs whose 404/error console messages are expected in non-Vercel environments.
 const ABORT_URL_PATTERNS = [
   // Vercel Analytics is only served on Vercel infrastructure; aborts cleanly in local/CI.
@@ -34,12 +91,19 @@ test('landing page UI sweep', async ({ page }, testInfo) => {
     fullPage: true,
   });
 
-  // No horizontal overflow (1px tolerance for sub-pixel rounding)
+  // Class-1: No horizontal overflow (1px tolerance for sub-pixel rounding)
   const overflow = await page.evaluate(() => {
     const html = document.documentElement;
     return { scroll: html.scrollWidth, client: html.clientWidth };
   });
   expect(overflow.scroll, `horizontal overflow at ${dir}`).toBeLessThanOrEqual(overflow.client + 1);
+
+  // Class-5: No constrained-overflow or fixed/absolute-positioned element overflows its parent
+  const offenders = await detectOverflowOffenders(page);
+  expect(
+    offenders,
+    `Class-5 overflow at / × ${dir}: ${JSON.stringify(offenders, null, 2)}`,
+  ).toEqual([]);
 
   // No error boundary rendered
   await expect(page.locator('[data-testid="error-boundary"]')).toHaveCount(0);
