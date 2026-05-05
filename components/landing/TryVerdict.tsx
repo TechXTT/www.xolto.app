@@ -203,7 +203,8 @@ export default function TryVerdict() {
           className="bg-surface border border-brand/15 rounded-[20px] p-5 sm:p-7 max-w-[720px]"
         >
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-            <label htmlFor="try-verdict-url" className="sr-only">
+            {/* data-allow-overflow: sr-only intentionally clips content to 1px width for screen readers */}
+            <label htmlFor="try-verdict-url" className="sr-only" data-allow-overflow="true">
               OLX.bg listing URL
             </label>
             <input
