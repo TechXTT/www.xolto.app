@@ -25,15 +25,16 @@ This means **the sweep validates the PR's own code**, not the pre-merge deployed
 
 ## Cross-repo XOL-171 alignment
 
-| Repo | Sweep target | Why |
-|---|---|---|
-| `xolto-admin` | Vercel preview URL via `wait-for-vercel-preview` action + `VERCEL_AUTOMATION_BYPASS_SECRET` | Admin is SSO-protected on Vercel (preview + prod both gated). Targeting preview validates the PR's deploy. |
-| `xolto-app` (dash) | Vercel preview URL (per XOL-177 + XOL-171 pattern) | Dash auth happens at app-level; Vercel preview can be public. Same chicken-egg risk as admin without preview targeting. |
-| `xolto-landing` (this repo) | Local production build (`pnpm build && pnpm start`) | Public site, no auth surface. Local build is simpler than wiring Vercel preview URL polling, and structurally avoids chicken-egg by definition. |
+| Repo                        | Sweep target                                                                                | Why                                                                                                                                             |
+| --------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `xolto-admin`               | Vercel preview URL via `wait-for-vercel-preview` action + `VERCEL_AUTOMATION_BYPASS_SECRET` | Admin is SSO-protected on Vercel (preview + prod both gated). Targeting preview validates the PR's deploy.                                      |
+| `xolto-app` (dash)          | Vercel preview URL (per XOL-177 + XOL-171 pattern)                                          | Dash auth happens at app-level; Vercel preview can be public. Same chicken-egg risk as admin without preview targeting.                         |
+| `xolto-landing` (this repo) | Local production build (`pnpm build && pnpm start`)                                         | Public site, no auth surface. Local build is simpler than wiring Vercel preview URL polling, and structurally avoids chicken-egg by definition. |
 
 ## When this might change
 
 If landing ever gains:
+
 - Server-side data fetching that depends on the deployed environment (current state: static export from Next.js)
 - Vercel-specific runtime behavior (edge functions, ISR, etc.) that diverges meaningfully between local prod build and deployed preview
 - Authentication or other state requiring a real Vercel deploy to test
